@@ -1,0 +1,21 @@
+<xml>
+	<config>
+    <!-- !! width / nb_thread / 3(bits per pixel) == no remain !! -->
+		<resolution>
+			<width> 1920 </width>
+			<height> 1080 </height>
+		</resolution>
+		<nb_thread> 4 </nb_thread>
+		<antialiasing> 1 </antialiasing>
+		<ray_depth> 5 </ray_depth>
+		<bias> 0.001 </bias>
+		<ambient> 0.15 0.15 0.15 </ambient>
+		<viewplane>
+			<!-- 16/9eme ratio -->
+			<width> 0.6 </width>
+			<height> 0.338983 </height>
+			<distance> 1 </distance>
+		</viewplane>
+		<materials> ./assets/materials.xml </materials>
+	</config>
+</xml>
