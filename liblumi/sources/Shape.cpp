@@ -63,7 +63,7 @@ bool	Sphere::Intersect(Ray& r, HitPoint& hp) const
 			const double root = sqrt(delta);
 			auto p = std::make_pair(-b + root, -b - root);
 			
-			if (p.first < p.second)
+			if (p.first > p.second)
 				std::swap(p.first, p.second);
 
 			t = p.first;

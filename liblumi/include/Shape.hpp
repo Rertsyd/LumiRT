@@ -26,8 +26,6 @@ public:
 
 	Vector				Position;
 	const uPtrMaterial&	MatPtr;
-
-	static bool	SolveQuadratic();
 };
 
 class Plane : public Shape
