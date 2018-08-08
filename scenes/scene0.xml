@@ -5,11 +5,11 @@
 </camera>
 <scene>
 	<objects>
-		<plane>
+		<!-- <plane>
 			<position> 0 -2 2.5 </position>
 			<normal> 0 1 0 </normal>
 			<rotation> 90 0 0 </rotation>
-			<material> mirror </material>
+			<material> blue </material>
 		</plane>
 		<plane>
 			<position> -2.5 -2 0 </position>
@@ -22,22 +22,22 @@
 			<normal> 0 1 0 </normal>
 			<rotation> 0 0 90 </rotation>
 			<material> blue </material>
-		</plane>
+		</plane> -->
 		<plane>
 			<position> 0 -2.5 0 </position>
 			<normal> 0 1 0 </normal>
-			<material> white </material>
+			<material> mirror </material>
 		</plane>
 		<sphere>
-			<position> 0 0 0 </position>
+			<position> 2.5 0 2 </position>
 			<radius> 1 </radius>
-			<material> red </material>
+			<material> white </material>
 		</sphere>
 	</objects>
 	<lights>
 		<point>
-			<position> 2 0 -2 </position>
-			<intensity> 100 </intensity>
+			<position> -3 0 0 </position>
+			<intensity> 420 </intensity>
 			<color> 1 1 1 </color>
 		</point>
 		<!-- <point>

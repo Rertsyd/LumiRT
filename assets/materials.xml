@@ -30,7 +30,7 @@
 	</white>
 	<mirror>
 		<type> reflection </type>
-		<albedo> 1 1 1 </albedo>
+		<albedo> 1 0 1 </albedo>
 		<kreflection> 0.8 </kreflection>
 	</mirror>
 	<glass>
