@@ -35,8 +35,8 @@
 	</mirror>
 	<glass>
 		<type> refraction </type>
-		<albedo> 0.9 0.1 0.1 </albedo>
-		<kreflection> 0.4 </kreflection>
+		<albedo> 0.9 0.9 0.9 </albedo>
+		<kreflection> 0.8 </kreflection>
 		<krefraction> 1.5 </krefraction>
 		<transparency> 0.8 </transparency>
 	</glass>

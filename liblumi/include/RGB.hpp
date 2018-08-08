@@ -33,7 +33,6 @@ struct RGB
 
 	RGB&	operator=(const RGB& c);
 
-	//RGB	operator/(const RGB& c) const;
 	RGB	operator/(const double d) const;
 
 	RGB	operator*(const RGB& c) const;

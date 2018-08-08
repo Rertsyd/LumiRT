@@ -1,0 +1,33 @@
+<xml>
+<camera>
+	<position> 0 30 -30 </position>
+	<look_at> 0 0 0 </look_at>
+</camera>
+<scene>
+	<objects>
+		<plane>
+			<position> 0 0 0 </position>
+			<normal> 0 1 0 </normal>
+			<rotation> 90 0 0 </rotation>
+			<material> red </material>
+		</plane>
+		<plane>
+			<position> 0 0 0 </position>
+			<normal> 0 1 0 </normal>
+			<material> green </material>
+		</plane>
+		<sphere>
+			<position> 0 15 -15 </position>
+			<radius> 1 </radius>
+			<material> glass </material>
+		</sphere>
+	</objects>
+	<lights>
+		<directional>
+			<direction> 0 -1 1 </direction>
+			<intensity> 75 </intensity>
+			<color> 1 1 1 </color>
+		</directional>
+	</lights>
+</scene>
+</xml>

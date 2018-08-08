@@ -64,11 +64,7 @@ void	Bmp::PutPixel(const uVec2 coord, const RGB clr)
 	const uint32_t	id =
 		IHeader.SizeImage - ((coord.y * sizeLine) + coord.x * bytesPerPixel) -1u;
 
-	unsigned r = static_cast<unsigned>(std::clamp(clr.red, 0., 255.)),
-		g = static_cast<unsigned>(std::clamp(clr.green, 0., 255.)),
-		b = static_cast<unsigned>(std::clamp(clr.blue, 0., 255.));
-
-	Data.get()[id] = r & 0xff;
-	Data.get()[id - 1] = g & 0xff;
-	Data.get()[id - 2] = b & 0xff;
+	Data.get()[id] = static_cast<unsigned>(std::clamp(clr.red, 0., 255.));
+	Data.get()[id - 1] = static_cast<unsigned>(std::clamp(clr.green, 0., 255.));
+	Data.get()[id - 2] = static_cast<unsigned>(std::clamp(clr.blue, 0., 255.));
 }

@@ -29,11 +29,6 @@ RGB&	RGB::operator=(const RGB& c)
 
 /* *********************************** */
 
-/*RGB	RGB::operator/(const RGB& c) const
-{
-	return RGB(red * c.red, green * c.green, blue * c.blue);
-}*/
-
 RGB	RGB::operator/(const double d) const
 {
 	return RGB(red / d, green / d, blue / d);
