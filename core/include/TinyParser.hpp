@@ -40,6 +40,7 @@ public:
 	static void	GetCamera(Camera& cam);
 	static void	GetPlane(ShapeList& list, MatList& mlist);
 	static void	GetSphere(ShapeList& list, MatList& mlist);
-	static void	GetLight(LightList& list);
+	static void	GetPoint(LightList& list);
+	static void	GetDirectional(LightList& list);
 	static const uPtrMaterial& GetMaterial(std::string mName, MatList& mlist);
 };

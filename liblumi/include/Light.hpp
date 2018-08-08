@@ -17,15 +17,46 @@
 struct Light
 {
 	Light();
-	Light(Vector pos, RGB clr, float i);
-	~Light() = default;
+	Light(RGB, double);
+	virtual ~Light() = default;
 
-	RGB		Illuminate(RGB& diffuse, HitPoint& hp) const;
+	virtual RGB		Illuminate(RGB& diffuse, HitPoint& hp) const = 0;
+	virtual Vector	GetPosition(const Vector& intersection) const = 0;
+	virtual Vector	GetDirection(const Vector& intersection) const = 0;
 
-	Vector	Position;
 	RGB		Color;
-	float	Intensity;
+	double	Intensity;
 };
 
 using uPtrLight = std::unique_ptr<Light>;
 using LightList = std::vector<uPtrLight>;
+
+class Point : public Light
+{
+	Vector	Position;
+
+public:
+	Point();
+	Point(RGB clr, double it, Vector pos);
+	virtual ~Point() = default;
+
+	virtual RGB		Illuminate(RGB& diffuse, HitPoint& hp) const;
+	virtual Vector	GetPosition(const Vector& intersection) const;
+	virtual Vector	GetDirection(const Vector& intersection) const;
+};
+
+//struct Spot : public Point {};
+
+class Directional : public Light
+{
+	Vector	Direction;
+
+public:
+	Directional();
+	Directional(RGB clr, double it, Vector dir);
+	virtual ~Directional() = default;
+
+	virtual RGB		Illuminate(RGB& diffuse, HitPoint& hp) const;
+	virtual Vector	GetPosition(const Vector& intersection) const;
+	virtual Vector	GetDirection(const Vector& intersection) const;
+};

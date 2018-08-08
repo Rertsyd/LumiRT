@@ -138,7 +138,11 @@ void	TinyParser::ReadScene(std::string file, LumiBox& lb)
 		Root = lightsPtr;
 		if (std::string str(lightsPtr->Value()); str == "point")
 		{
-			GetLight(lb.LgtList);
+			GetPoint(lb.LgtList);
+		}
+		else if (str == "directional")
+		{
+			GetDirectional(lb.LgtList);
 		}
 	}
 }
@@ -217,7 +221,7 @@ void	TinyParser::GetSphere(ShapeList& list, MatList& mlist)
 	list.push_back(std::move(uPtrShape(new Sphere(s))));
 }
 
-void	TinyParser::GetLight(LightList& list)
+void	TinyParser::GetPoint(LightList& list)
 {
 	Vector pos;
 	GetVector("position", pos);
@@ -225,10 +229,26 @@ void	TinyParser::GetLight(LightList& list)
 	RGB clr;
 	GetColor("color", clr);
 
-	float it = 0.;
-	Root->FirstChildElement("intensity")->QueryFloatText(&it);
+	double it = 75.;
+	if (auto ptr = Root->FirstChildElement("intensity"); ptr)
+		ptr->QueryDoubleText(&it);
 
-	list.push_back(std::move(uPtrLight(new Light(pos, clr, it))));
+	list.push_back(std::move(uPtrLight(new Point(clr, it, pos))));
+}
+
+void	TinyParser::GetDirectional(LightList& list)
+{
+	Vector dir;
+	GetVector("direction", dir);
+
+	RGB clr;
+	GetColor("color", clr);
+
+	double it = 0.;
+	if (auto ptr = Root->FirstChildElement("intensity"); ptr)
+		ptr->QueryDoubleText(&it);
+
+	list.push_back(std::move(uPtrLight(new Directional(clr, it, dir))));
 }
 
 const uPtrMaterial&	TinyParser::GetMaterial(std::string mName, MatList& mlist)

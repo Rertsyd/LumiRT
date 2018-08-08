@@ -14,7 +14,7 @@
 
 static RGB	stSpecular(uPtrLight& point, Ray r, RGB li, Info& info)
 {
-	const Vector	lightDir = (info.HP.Intersection - point->Position).Normalize();
+	const Vector	lightDir = point->GetDirection(info.HP.Intersection);
 	const Vector	refl = reflect(lightDir, info.HP.Normal);
 	const double	angle = refl.Dot(r.Direction * -1);
 
@@ -33,7 +33,7 @@ RGB		Phong(LumiBox& lb, Ray& rPrimary, Info& info)
 
 	for (auto& light : lb.LgtList)
 	{
-		rShadow.Direction = light->Position - info.HP.Intersection;
+		rShadow.Direction = light->GetPosition(info.HP.Intersection) - info.HP.Intersection;
 
 		Info	iShadow;
 		iShadow.Distance = rShadow.Direction.SquareLength();

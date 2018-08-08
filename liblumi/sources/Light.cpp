@@ -12,14 +12,21 @@
 
 #include "Light.hpp"
 
-Light::Light() : Position(), Color(), Intensity(100.)
+Light::Light() : Color(), Intensity(100.)
 {}
 
-Light::Light(Vector pos, RGB clr, float i) :
-	Position(pos), Color(clr), Intensity(i)
+Light::Light(RGB clr, double it) : Color(clr), Intensity(it)
 {}
 
-RGB	Light::Illuminate(RGB& diffuse, HitPoint& hp) const
+/* ************** */
+
+Point::Point() : Light(), Position()
+{}
+
+Point::Point(RGB clr, double it, Vector pos) : Light(clr, it), Position(pos)
+{}
+
+RGB	Point::Illuminate(RGB& diffuse, HitPoint& hp) const
 {
 	Vector vlight = Position - hp.Intersection;
 	const double r2 = vlight.SquareLength();
@@ -34,4 +41,43 @@ RGB	Light::Illuminate(RGB& diffuse, HitPoint& hp) const
 	}
  
 	return (il);
+}
+
+Vector	Point::GetPosition(const Vector&) const
+{
+	return Position;
+}
+
+Vector	Point::GetDirection(const Vector& intersection) const
+{
+	return std::move((Position - intersection).Normalize());
+}
+
+/* ************** */
+
+Directional::Directional() : Light(), Direction()
+{}
+
+Directional::Directional(RGB clr, double it, Vector dir) : Light(clr, it), Direction(dir)
+{}
+
+RGB	Directional::Illuminate(RGB& diffuse, HitPoint& hp) const
+{
+	if (const double angle = hp.Normal.Dot(Direction * -1.);
+		angle > 0.)
+	{
+		diffuse += hp.Albedo * Color * angle;
+	}
+
+	return (Color * Intensity);
+}
+
+Vector	Directional::GetPosition(const Vector& intersection) const
+{
+	return std::move(intersection + (Direction * -1. * 999.));
+}
+
+Vector	Directional::GetDirection(const Vector&) const
+{
+	return Direction;
 }
