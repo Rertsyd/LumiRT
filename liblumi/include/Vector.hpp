@@ -32,6 +32,7 @@ struct Vector
 	double			x, y, z;
 
 	Vector();
+	Vector(Vector&& v);
 	Vector(double _x, double _y, double _z);
 
 	Vector(const Vector& v);

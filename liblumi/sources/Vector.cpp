@@ -15,6 +15,12 @@
 Vector::Vector() : x(0.), y(0.), z(0.)
 {}
 
+Vector::Vector(Vector&& v) :
+	x(std::move(v.x)),
+	y(std::move(v.y)),
+	z(std::move(v.z))
+{}
+
 Vector::Vector(double _x, double _y, double _z) :
 	x(_x), y(_y), z(_z)
 {}
