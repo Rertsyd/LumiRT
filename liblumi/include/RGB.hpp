@@ -20,7 +20,7 @@
 #include <string>
 
 static constexpr double Zero = 1e-6;
-static constexpr double Pi = 3.14159265359;
+static constexpr double Pi = 3.141592653589793;
 static constexpr double Rad = Pi / 180.;
 
 struct RGB

@@ -62,7 +62,7 @@ RGB	Directional::Illuminate(RGB& diffuse, const HitPoint& hp) const
 Vector	Directional::GetDiffPos(const Vector& intersection) const
 {
 	// The return is a reduced version of this calculation :
-	// intersection - (intersection + ((Direction * -1.) * 999.));
+	// intersection - (intersection + ((Direction * -1.) * FarFarAway));
 
-	return Direction * 999.;
+	return Direction * FarFarAway;
 }

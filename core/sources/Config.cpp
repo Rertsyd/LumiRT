@@ -30,12 +30,11 @@ Info::Info() :
 	HP(), Distance(std::numeric_limits<double>::max()), Object(nullptr)
 {}
 
-Info::~Info()
-{}
-
 void	Info::Reset()
 {
-	HP.Intersection = Vector(0., 0., 0.);
+	HP.Intersection = Vector();
+	HP.Normal = Vector();
+	HP.Albedo = RGB();
 	Distance = std::numeric_limits<double>::max();
 	Object = nullptr;
 }

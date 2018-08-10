@@ -240,11 +240,12 @@ void	TinyParser::GetDirectional(LightList& list)
 {
 	Vector dir;
 	GetVector("direction", dir);
+	dir.Normalize();
 
 	RGB clr;
 	GetColor("color", clr);
 
-	double it = 0.;
+	double it = 75.;
 	if (auto ptr = Root->FirstChildElement("intensity"); ptr)
 		ptr->QueryDoubleText(&it);
 

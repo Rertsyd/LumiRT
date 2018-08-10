@@ -14,6 +14,8 @@
 
 #include "Material.hpp"
 
+static constexpr double FarFarAway = 999.;
+
 class Light
 {
 	Light() = delete;

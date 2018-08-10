@@ -45,7 +45,7 @@ struct LumiBox
 struct Info
 {
 	Info();
-	~Info();
+	~Info() = default;
 
 	HitPoint		HP;
 	double			Distance;
