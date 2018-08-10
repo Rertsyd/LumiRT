@@ -40,6 +40,11 @@ Vector&	Vector::operator=(const Vector& v)
 	return *this;
 }
 
+bool	Vector::operator==(const Vector& v) const
+{
+	return (x == v.x && y == v.y && z == v.z);
+}
+
 /* *********************************** */
 
 double&			Vector::operator[](const uint8_t i)

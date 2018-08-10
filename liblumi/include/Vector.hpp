@@ -39,6 +39,7 @@ struct Vector
 	~Vector() = default;
 
 	Vector&	operator=(const Vector& v);
+	bool	operator==(const Vector& v) const;
 
 	double& operator[](const uint8_t i);
 	const double& operator[](const uint8_t i) const;
