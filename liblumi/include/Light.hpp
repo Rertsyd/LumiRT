@@ -27,8 +27,7 @@ public:
 	virtual ~Light() = default;
 
 	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const = 0;
-	virtual Vector	GetPosition(const Vector& intersection) const = 0;
-	virtual Vector	GetDirection(const Vector& intersection) const = 0;
+	virtual Vector	GetDiffPos(const Vector& intersection) const = 0;
 };
 
 using uPtrLight = std::unique_ptr<Light>;
@@ -45,8 +44,7 @@ public:
 	virtual ~Point() = default;
 
 	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const;
-	virtual Vector	GetPosition(const Vector& intersection) const;
-	virtual Vector	GetDirection(const Vector& intersection) const;
+	virtual Vector	GetDiffPos(const Vector& intersection) const;
 };
 
 class Directional : public Light
@@ -60,6 +58,5 @@ public:
 	virtual ~Directional() = default;
 
 	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const;
-	virtual Vector	GetPosition(const Vector& intersection) const;
-	virtual Vector	GetDirection(const Vector& intersection) const;
+	virtual Vector	GetDiffPos(const Vector& intersection) const;
 };

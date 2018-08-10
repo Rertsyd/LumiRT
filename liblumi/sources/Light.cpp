@@ -38,14 +38,9 @@ RGB	Point::Illuminate(RGB& diffuse, const HitPoint& hp) const
 	return (il);
 }
 
-Vector	Point::GetPosition(const Vector&) const
+Vector	Point::GetDiffPos(const Vector& intersection) const
 {
-	return Position;
-}
-
-Vector	Point::GetDirection(const Vector& intersection) const
-{
-	return (Position - intersection).Normalize();
+	return intersection - Position;
 }
 
 /* ************** */
@@ -64,12 +59,10 @@ RGB	Directional::Illuminate(RGB& diffuse, const HitPoint& hp) const
 	return (Color * Intensity);
 }
 
-Vector	Directional::GetPosition(const Vector& intersection) const
+Vector	Directional::GetDiffPos(const Vector& intersection) const
 {
-	return intersection + ((Direction * -1.) * 999.);
-}
+	// The return is a reduced version of this calculation :
+	// intersection - (intersection + ((Direction * -1.) * 999.));
 
-Vector	Directional::GetDirection(const Vector&) const
-{
-	return Direction;
+	return Direction * 999.;
 }
