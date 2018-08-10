@@ -60,7 +60,7 @@ Matrix	Matrix::InitMatRotZ(const double rotZ)
 
 /* ************** */
 
-void	Matrix::InitRotation(Vector rot)
+void	Matrix::InitRotation(const Vector rot)
 {
 	*this = InitMatRotX(rot.x) * InitMatRotY(rot.y) * InitMatRotZ(rot.z);
 }

@@ -22,7 +22,7 @@ Plane::Plane(Vector pos, const uPtrMaterial& mat) :
 	Shape(pos, mat), Normal(), Rotation()
 {}
 
-bool	Plane::Intersect(Ray& r, HitPoint& hp) const
+bool	Plane::Intersect(const Ray& r, HitPoint& hp) const
 {
 	bool			err = false;
 	const double	dv = Normal.Dot(r.Direction);
@@ -46,7 +46,7 @@ Sphere::Sphere(Vector pos, const uPtrMaterial& mat) :
 	Shape(pos, mat), Radius(0.)
 {}
 
-bool	Sphere::Intersect(Ray& r, HitPoint& hp) const
+bool	Sphere::Intersect(const Ray& r, HitPoint& hp) const
 {
 	bool	err = false;
 

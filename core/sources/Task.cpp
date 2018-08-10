@@ -39,7 +39,7 @@ static RGB	AA(LumiBox& lb, uVec2 coord)
 	return pxColor;
 }
 
-void		Task(LumiBox& lb, unsigned threadId)
+void		Task(LumiBox& lb, const unsigned threadId)
 {
 	const unsigned	init_x = Config::Width / Config::NbThread * threadId;
 	const unsigned	cond_x = Config::Width / Config::NbThread * (threadId + 1);

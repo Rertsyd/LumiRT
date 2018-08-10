@@ -12,16 +12,16 @@
 
 #include "LumiRT.hpp"
 
-static RGB	stSpecular(uPtrLight& point, Ray r, RGB li, Info& info)
+static RGB	stSpecular(const uPtrLight& light, const Ray& r, const RGB& li, Info& info)
 {
 	const Vector	lightDir = point->GetDirection(info.HP.Intersection);
 	const Vector	refl = reflect(lightDir, info.HP.Normal);
-	const double	angle = refl.Dot(r.Direction * -1);
+	const double	angle = refl.Dot(r.Direction * -1.);
 
 	return li * std::pow(std::max(0., angle), info.Object->MatPtr->ksExp);
 }
 
-RGB		Phong(LumiBox& lb, Ray& rPrimary, Info& info)
+RGB		Phong(const LumiBox& lb, const Ray& rPrimary, Info& info)
 {
 	RGB		diffuse, specular;
 	

@@ -14,9 +14,6 @@
 
 #include "Matrix.hpp"
 
-// Built according to this link :
-// https://web.archive.org/web/20080912171714/http://www.fortunecity.com/skyscraper/windows/364/bmpffrmt.html
-
 class Bmp
 {
 	Bmp(Bmp&) = delete;
@@ -53,9 +50,7 @@ public:
 	Bmp();
 	~Bmp() = default;
 
-	void	InitHeader(uint32_t width, uint32_t height);
+	void	InitHeader(const uint32_t width, const uint32_t height);
 	void	Save(const char* path);
-	void	PutPixel(const uVec2 coord, const RGB clr);
-
-	//static std::string	SavePath;
+	void	PutPixel(const uVec2 coord, const RGB clr) const;
 };

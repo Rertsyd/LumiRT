@@ -26,7 +26,7 @@ public:
 	Matrix();
 	~Matrix() = default;
 
-	void	InitRotation(Vector rot);
+	void	InitRotation(const Vector rot);
 
 	Matrix&	operator=(const Matrix& m);
 

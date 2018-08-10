@@ -14,18 +14,21 @@
 
 #include "Material.hpp"
 
-struct Light
+class Light
 {
-	Light();
-	Light(RGB, double);
+	Light() = delete;
+
+protected:
+	const RGB		Color;
+	const double	Intensity;
+
+public:
+	Light(RGB clr, double it);
 	virtual ~Light() = default;
 
-	virtual RGB		Illuminate(RGB& diffuse, HitPoint& hp) const = 0;
+	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const = 0;
 	virtual Vector	GetPosition(const Vector& intersection) const = 0;
 	virtual Vector	GetDirection(const Vector& intersection) const = 0;
-
-	RGB		Color;
-	double	Intensity;
 };
 
 using uPtrLight = std::unique_ptr<Light>;
@@ -33,30 +36,30 @@ using LightList = std::vector<uPtrLight>;
 
 class Point : public Light
 {
-	Vector	Position;
+	Point() = delete;
+
+	const Vector	Position;
 
 public:
-	Point();
 	Point(RGB clr, double it, Vector pos);
 	virtual ~Point() = default;
 
-	virtual RGB		Illuminate(RGB& diffuse, HitPoint& hp) const;
+	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const;
 	virtual Vector	GetPosition(const Vector& intersection) const;
 	virtual Vector	GetDirection(const Vector& intersection) const;
 };
 
-//struct Spot : public Point {};
-
 class Directional : public Light
 {
-	Vector	Direction;
+	Directional() = delete;
+
+	const Vector	Direction;
 
 public:
-	Directional();
 	Directional(RGB clr, double it, Vector dir);
 	virtual ~Directional() = default;
 
-	virtual RGB		Illuminate(RGB& diffuse, HitPoint& hp) const;
+	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const;
 	virtual Vector	GetPosition(const Vector& intersection) const;
 	virtual Vector	GetDirection(const Vector& intersection) const;
 };

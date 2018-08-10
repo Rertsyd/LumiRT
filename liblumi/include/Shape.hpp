@@ -22,7 +22,7 @@ public:
 	Shape(Vector pos, const uPtrMaterial& mat);
 	virtual ~Shape() = default;
 
-	virtual bool	Intersect(Ray& r, HitPoint& hp) const = 0;
+	virtual bool	Intersect(const Ray& r, HitPoint& hp) const = 0;
 
 	Vector				Position;
 	const uPtrMaterial&	MatPtr;
@@ -36,7 +36,7 @@ public:
 	Plane(Vector pos, const uPtrMaterial& mat);
 	virtual ~Plane() = default;
 
-	virtual bool	Intersect(Ray& r, HitPoint& hp) const;
+	virtual bool	Intersect(const Ray& r, HitPoint& hp) const;
 
 	Vector	Normal;
 	Vector	Rotation;
@@ -50,7 +50,7 @@ public:
 	Sphere(Vector pos, const uPtrMaterial& mat);
 	virtual ~Sphere() = default;
 
-	virtual bool	Intersect(Ray& r, HitPoint& hp) const;
+	virtual bool	Intersect(const Ray& r, HitPoint& hp) const;
 
 	double	Radius;
 };

@@ -12,7 +12,7 @@
 
 #include "LumiRT.hpp"
 
-RGB		Cast(LumiBox& lb, Ray& r, unsigned depth)
+RGB		Cast(const LumiBox& lb, const Ray& r, const unsigned depth)
 {
 	RGB	HitColor = { 0.128, 0.128, 0.128 };
 

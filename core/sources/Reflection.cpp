@@ -18,7 +18,7 @@ Vector	reflect(const Vector& incident, const Vector& normal)
 }
 
 
-RGB   Reflection(LumiBox& lb, Ray& r, Info& info, unsigned depth)
+RGB   Reflection(const LumiBox& lb, const Ray& r, Info& info, const unsigned depth)
 {
 	info.AddBias();
 

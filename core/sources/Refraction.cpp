@@ -55,7 +55,7 @@ static Vector	stRefract(const Vector incident, Vector normal, const double ior)
 	return (k < 0.) ? Vector() : (incident * eta) + (normal * (eta * cosIncident - sqrt(k)));
 }
 
-static RGB		stGetRefractColor(LumiBox& lb, Ray& r, Info& info, ReFracTools& tools)
+static RGB		stGetRefractColor(const LumiBox& lb, const Ray& r, Info& info, ReFracTools& tools)
 {
 	RGB	color;
 
@@ -74,7 +74,7 @@ static RGB		stGetRefractColor(LumiBox& lb, Ray& r, Info& info, ReFracTools& tool
 	return (color);
 }
 
-static RGB		stGetReflectColor(LumiBox& lb, Ray& r, Info& info, ReFracTools& tools)
+static RGB		stGetReflectColor(const LumiBox& lb, const Ray& r, Info& info, ReFracTools& tools)
 {
 	Ray refl;
 	refl.Direction = reflect(r.Direction, info.HP.Normal).Normalize();
@@ -86,7 +86,7 @@ static RGB		stGetReflectColor(LumiBox& lb, Ray& r, Info& info, ReFracTools& tool
 	return ((info.HP.Albedo * Cast(lb, refl, tools.depth + 1u)));
 }
 
-RGB   Refraction(LumiBox& lb, Ray& r, Info& info, unsigned depth)
+RGB   Refraction(const LumiBox& lb, const Ray& r, Info& info, const unsigned depth)
 {
 	ReFracTools tools;
 	tools.ior	= info.Object->MatPtr->kRefraction;

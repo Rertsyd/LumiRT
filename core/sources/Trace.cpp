@@ -12,7 +12,7 @@
 
 #include "LumiRT.hpp"
 
-static void	stCheckDist(uPtrShape& shape, Ray& r, Info& info, Info& tmp)
+static void	stCheckDist(const uPtrShape& shape, const Ray& r, Info& info, Info& tmp)
 {
 	tmp.Distance = (tmp.HP.Intersection - r.Origin).SquareLength();
 
@@ -21,12 +21,13 @@ static void	stCheckDist(uPtrShape& shape, Ray& r, Info& info, Info& tmp)
 		info.Distance = tmp.Distance;
 		info.HP.Intersection = tmp.HP.Intersection;
 		info.HP.Normal = tmp.HP.Normal;
+		info.HP.Albedo = tmp.HP.Albedo;
 		info.Object = shape.get();
 		tmp.Reset();
 	}
 }
 
-static void	stPrimary(ShapeList& shpl, Ray& rPrimary, Info& info)
+static void	stPrimary(const ShapeList& shpl, const Ray& rPrimary, Info& info)
 {
 	Info	tmp;
 
@@ -38,7 +39,7 @@ static void	stPrimary(ShapeList& shpl, Ray& rPrimary, Info& info)
 	}
 }
 
-static void	stShadow(ShapeList& shpl, Ray& rShadow, Info& info)
+static void	stShadow(const ShapeList& shpl, const Ray& rShadow, Info& info)
 {
 	Info			tmp;
 	const Shape*	ptr = info.Object;
@@ -58,7 +59,7 @@ static void	stShadow(ShapeList& shpl, Ray& rShadow, Info& info)
 	}
 }
 
-bool	Trace(ShapeList& shpl, Ray& r, Info& info)
+bool	Trace(const ShapeList& shpl, const Ray& r, Info& info)
 {
 	if (r.Type == Ray::Types::Primary)
 		stPrimary(shpl, r, info);

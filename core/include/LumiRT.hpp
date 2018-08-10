@@ -14,15 +14,15 @@
 
 #include "TinyParser.hpp"
 
-void	Task(LumiBox& lb, unsigned threadId);
-RGB		Cast(LumiBox& lb, Ray& r, unsigned depth);
-bool	Trace(ShapeList& shpl, Ray& r, Info &info);
+void	Task(LumiBox& lb, const unsigned threadId);
+RGB		Cast(const LumiBox& lb, const Ray& r, const unsigned depth);
+bool	Trace(const ShapeList& shpl, const Ray& r, Info &info);
 
 Vector	reflect(const Vector& incident, const Vector& normal);
 
-RGB		Phong(LumiBox& lb, Ray& r, Info& info);
-RGB		Reflection(LumiBox& lb, Ray& r, Info& info, unsigned depth);
-RGB		Refraction(LumiBox& lb, Ray& r, Info& info, unsigned depth);
+RGB		Phong(const LumiBox& lb, const Ray& r, Info& info);
+RGB		Reflection(const LumiBox& lb, const Ray& r, Info& info, const unsigned depth);
+RGB		Refraction(const LumiBox& lb, const Ray& r, Info& info, const unsigned depth);
 
 struct ReFracTools
 {
