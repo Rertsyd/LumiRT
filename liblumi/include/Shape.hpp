@@ -18,11 +18,20 @@ class Shape
 {
 	Shape() = delete;
 
+protected:
+	enum Types
+	{
+		Plane = 0,
+		Sphere
+	}	Type;
+
 public:
-	Shape(Vector pos, const uPtrMaterial& mat);
+
+	Shape(Types t, Vector pos, const uPtrMaterial& mat);
 	virtual ~Shape() = default;
 
 	virtual bool	Intersect(const Ray& r, HitPoint& hp) const = 0;
+	bool			IsPlanar() const;
 
 	Vector				Position;
 	const uPtrMaterial&	MatPtr;

@@ -13,13 +13,18 @@
 #include <limits>
 #include "Shape.hpp"
 
-Shape::Shape(Vector pos, const uPtrMaterial& mat) : Position(pos), MatPtr(mat)
+Shape::Shape(Types t, Vector pos, const uPtrMaterial& mat) : Type(t), Position(pos), MatPtr(mat)
 {}
+
+bool	Shape::IsPlanar() const
+{
+	return (Type == Types::Plane);
+}
 
 /* ************** */
 
 Plane::Plane(Vector pos, const uPtrMaterial& mat) :
-	Shape(pos, mat), Normal(), Rotation()
+	Shape(Types::Plane, pos, mat), Normal(), Rotation()
 {}
 
 bool	Plane::Intersect(const Ray& r, HitPoint& hp) const
@@ -43,7 +48,7 @@ bool	Plane::Intersect(const Ray& r, HitPoint& hp) const
 /* ************** */
 
 Sphere::Sphere(Vector pos, const uPtrMaterial& mat) :
-	Shape(pos, mat), Radius(0.)
+	Shape(Types::Sphere, pos, mat), Radius(0.)
 {}
 
 bool	Sphere::Intersect(const Ray& r, HitPoint& hp) const

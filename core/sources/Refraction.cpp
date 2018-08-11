@@ -62,7 +62,7 @@ static RGBColor		stGetRefractColor(const LumiBox& lb, const Ray& r, Info& info, 
 	if (tools.kr < 1)
 	{
 		Ray refr;
-		refr.Direction = (info.Object ) ? (r.Direction - tools.vbias) :
+		refr.Direction = (info.Object->IsPlanar()) ? (r.Direction - tools.vbias) :
 			stRefract(r.Direction , info.HP.Normal, tools.ior).Normalize();
 
 		refr.Origin = (tools.isOutside) ?
