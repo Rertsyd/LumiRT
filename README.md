@@ -1,4 +1,4 @@
-# LumiRT ~ A basic raytracer
+# LumiRT
 
 ## Usages
 ---
