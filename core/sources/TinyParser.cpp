@@ -85,7 +85,8 @@ void	TinyParser::ReadMaterials(MatList& list)
 		trim(str);
 		mat->Type = mapMaterialTypes.at(str);
 
-		GetColor("albedo", mat->Albedo);
+		if (mat->Type != Material::Types::Reflection)
+			GetColor("albedo", mat->Albedo);
 
 		if (mat->Type == Material::Types::Phong)
 		{
