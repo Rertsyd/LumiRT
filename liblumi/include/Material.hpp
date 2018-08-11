@@ -29,14 +29,14 @@ struct Material
 
 	std::string	Name;
 
-	Types	Type;
-	RGB		Albedo;
-	double	kDiffuse;
-	double	kSpecular;
-	double	ksExp;
-	double	kReflection;
-	double	kRefraction;
-	double	Transparency;
+	Types		Type;
+	RGBColor	Albedo;
+	double		kDiffuse;
+	double		kSpecular;
+	double		ksExp;
+	double		kReflection;
+	double		kRefraction;
+	double		Transparency;
 
 	static std::string	Path;
 };

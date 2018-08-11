@@ -55,7 +55,7 @@ void	Bmp::Save(const char* path)
 	ofs.close();
 }
 
-void	Bmp::PutPixel(const uVec2 coord, const RGB clr) const
+void	Bmp::PutPixel(const uVec2 coord, const RGBColor clr) const
 {
 	static const uint32_t	bytesPerPixel = IHeader.BitCount / 8u;
 	static const uint32_t	sizeLine = IHeader.Width * bytesPerPixel;

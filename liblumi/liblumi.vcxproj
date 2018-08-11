@@ -127,7 +127,7 @@
     <ClInclude Include="include\Material.hpp" />
     <ClInclude Include="include\Matrix.hpp" />
     <ClInclude Include="include\Ray.hpp" />
-    <ClInclude Include="include\RGB.hpp" />
+    <ClInclude Include="include\RGBColor.hpp" />
     <ClInclude Include="include\Shape.hpp" />
     <ClInclude Include="include\Vector.hpp" />
   </ItemGroup>
@@ -139,7 +139,7 @@
     <ClCompile Include="sources\Material.cpp" />
     <ClCompile Include="sources\Matrix.cpp" />
     <ClCompile Include="sources\Ray.cpp" />
-    <ClCompile Include="sources\RGB.cpp" />
+    <ClCompile Include="sources\RGBColor.cpp" />
     <ClCompile Include="sources\Shape.cpp" />
     <ClCompile Include="sources\Vector.cpp" />
   </ItemGroup>

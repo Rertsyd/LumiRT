@@ -19,6 +19,6 @@ struct HitPoint
 	HitPoint();
 	~HitPoint() = default;
 
-	Vector	Intersection, Normal;
-	RGB		Albedo;
+	Vector		Intersection, Normal;
+	RGBColor	Albedo;
 };

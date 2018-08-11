@@ -23,31 +23,32 @@ static constexpr double Zero = 1e-6;
 static constexpr double Pi = 3.141592653589793;
 static constexpr double Rad = Pi / 180.;
 
-struct RGB
+struct RGBColor
 {	
-	RGB();
-	RGB(double r, double g, double b);
-	~RGB() = default;
+	RGBColor();
+	RGBColor(const RGBColor& rgb);
+	RGBColor(double r, double g, double b);
+	~RGBColor() = default;
 
 	double	red, green, blue;
 
-	RGB&	operator=(const RGB& c);
+	RGBColor&	operator=(const RGBColor& c);
 
-	RGB	operator/(const double d) const;
+	RGBColor	operator/(const double d) const;
 
-	RGB	operator*(const RGB& c) const;
-	RGB	operator*(const double d) const;
-	RGB&	operator*=(const RGB& c);
-	RGB&	operator*=(const double d);
+	RGBColor	operator*(const RGBColor& c) const;
+	RGBColor	operator*(const double d) const;
+	RGBColor&	operator*=(const RGBColor& c);
+	RGBColor&	operator*=(const double d);
 
-	RGB	operator+(const RGB& c) const;
-	RGB	operator+(const double d) const;
-	RGB&	operator+=(const RGB& c);
-	RGB&	operator+=(const double d);
+	RGBColor	operator+(const RGBColor& c) const;
+	RGBColor	operator+(const double d) const;
+	RGBColor&	operator+=(const RGBColor& c);
+	RGBColor&	operator+=(const double d);
 
-	RGB	operator-(const RGB& c) const;
-	RGB	operator-(const double d) const;
-	RGB&	operator-=(const RGB& c);
-	RGB&	operator-=(const double d);
-	RGB&	Normalize();
+	RGBColor	operator-(const RGBColor& c) const;
+	RGBColor	operator-(const double d) const;
+	RGBColor&	operator-=(const RGBColor& c);
+	RGBColor&	operator-=(const double d);
+	RGBColor&	Normalize();
 };

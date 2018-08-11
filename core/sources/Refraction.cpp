@@ -55,9 +55,9 @@ static Vector	stRefract(const Vector incident, Vector normal, const double ior)
 	return (k < 0.) ? Vector() : (incident * eta) + (normal * (eta * cosIncident - sqrt(k)));
 }
 
-static RGB		stGetRefractColor(const LumiBox& lb, const Ray& r, Info& info, ReFracTools& tools)
+static RGBColor		stGetRefractColor(const LumiBox& lb, const Ray& r, Info& info, ReFracTools& tools)
 {
-	RGB	color;
+	RGBColor	color;
 
 	if (tools.kr < 1)
 	{
@@ -74,7 +74,7 @@ static RGB		stGetRefractColor(const LumiBox& lb, const Ray& r, Info& info, ReFra
 	return (color);
 }
 
-static RGB		stGetReflectColor(const LumiBox& lb, const Ray& r, Info& info, ReFracTools& tools)
+static RGBColor		stGetReflectColor(const LumiBox& lb, const Ray& r, Info& info, ReFracTools& tools)
 {
 	Ray refl;
 	refl.Direction = reflect(r.Direction, info.HP.Normal).Normalize();
@@ -86,7 +86,7 @@ static RGB		stGetReflectColor(const LumiBox& lb, const Ray& r, Info& info, ReFra
 	return ((info.HP.Albedo * Cast(lb, refl, tools.depth + 1u)));
 }
 
-RGB   Refraction(const LumiBox& lb, const Ray& r, Info& info, const unsigned depth)
+RGBColor   Refraction(const LumiBox& lb, const Ray& r, Info& info, const unsigned depth)
 {
 	ReFracTools tools;
 	tools.ior	= info.Object->MatPtr->kRefraction;
@@ -95,10 +95,10 @@ RGB   Refraction(const LumiBox& lb, const Ray& r, Info& info, const unsigned dep
 	tools.isOutside = (r.Direction.Dot(info.HP.Normal) < 0.) ? true : false;
 	tools.depth = depth;
 
-	const RGB	refractColor = stGetRefractColor(lb, r, info, tools);
-	const RGB	reflectColor = stGetReflectColor(lb, r, info, tools);
+	const RGBColor	refractColor = stGetRefractColor(lb, r, info, tools);
+	const RGBColor	reflectColor = stGetReflectColor(lb, r, info, tools);
 
-	const RGB	color = (reflectColor * tools.kr) + (refractColor * (1. - tools.kr));
+	const RGBColor	color = (reflectColor * tools.kr) + (refractColor * (1. - tools.kr));
 
 	return	(Config::Ambient * info.HP.Albedo * color + color);
 }

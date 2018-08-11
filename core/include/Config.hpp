@@ -27,7 +27,7 @@ public:
 	static unsigned	AntiAliasing;
 	static double	Bias;
 	
-	static RGB		Ambient;
+	static RGBColor	Ambient;
 };
 
 struct LumiBox

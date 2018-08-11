@@ -32,7 +32,7 @@ public:
 	static void	ReadScene(std::string file, LumiBox& lb);
 
 	static void	GetVector(std::string n, Vector& v);
-	static void	GetColor(std::string n, RGB& c);
+	static void	GetColor(std::string n, RGBColor& c);
 
 	static void	GetNormal(Vector& v);
 	static void	GetRotation(Plane& p);

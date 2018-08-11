@@ -12,9 +12,9 @@
 
 #include "LumiRT.hpp"
 
-RGB		Cast(const LumiBox& lb, const Ray& r, const unsigned depth)
+RGBColor	Cast(const LumiBox& lb, const Ray& r, const unsigned depth)
 {
-	RGB	HitColor = { 0.128, 0.128, 0.128 };
+	RGBColor HitColor = { 0.128, 0.128, 0.128 };
 
 	if (depth < Ray::MaxDepth)
 	{

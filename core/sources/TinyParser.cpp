@@ -158,7 +158,7 @@ void	TinyParser::GetVector(std::string name, Vector& vec)
 	vec.z = v.at(2);
 }
 
-void	TinyParser::GetColor(std::string name, RGB& clr)
+void	TinyParser::GetColor(std::string name, RGBColor& clr)
 {
 	std::string	str(Root->FirstChildElement(name.c_str())->GetText());
 	std::vector<double> v;
@@ -226,7 +226,7 @@ void	TinyParser::GetPoint(LightList& list)
 	Vector pos;
 	GetVector("position", pos);
 
-	RGB clr;
+	RGBColor clr;
 	GetColor("color", clr);
 
 	double it = 75.;
@@ -242,7 +242,7 @@ void	TinyParser::GetDirectional(LightList& list)
 	GetVector("direction", dir);
 	dir.Normalize();
 
-	RGB clr;
+	RGBColor clr;
 	GetColor("color", clr);
 
 	double it = 75.;

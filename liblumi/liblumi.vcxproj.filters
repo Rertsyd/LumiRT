@@ -32,13 +32,13 @@
     <ClInclude Include="include\Ray.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\RGB.hpp">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Shape.hpp">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Vector.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\RGBColor.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -64,13 +64,13 @@
     <ClCompile Include="sources\Ray.cpp">
       <Filter>sources</Filter>
     </ClCompile>
-    <ClCompile Include="sources\RGB.cpp">
-      <Filter>sources</Filter>
-    </ClCompile>
     <ClCompile Include="sources\Shape.cpp">
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="sources\Vector.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\RGBColor.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

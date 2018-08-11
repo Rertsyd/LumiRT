@@ -21,14 +21,14 @@ class Light
 	Light() = delete;
 
 protected:
-	const RGB		Color;
+	const RGBColor		Color;
 	const double	Intensity;
 
 public:
-	Light(RGB clr, double it);
+	Light(RGBColor clr, double it);
 	virtual ~Light() = default;
 
-	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const = 0;
+	virtual RGBColor		Illuminate(RGBColor& diffuse, const HitPoint& hp) const = 0;
 	virtual Vector	GetDiffPos(const Vector& intersection) const = 0;
 };
 
@@ -42,10 +42,10 @@ class Point : public Light
 	const Vector	Position;
 
 public:
-	Point(RGB clr, double it, Vector pos);
+	Point(RGBColor clr, double it, Vector pos);
 	virtual ~Point() = default;
 
-	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const;
+	virtual RGBColor		Illuminate(RGBColor& diffuse, const HitPoint& hp) const;
 	virtual Vector	GetDiffPos(const Vector& intersection) const;
 };
 
@@ -56,9 +56,9 @@ class Directional : public Light
 	const Vector	Direction;
 
 public:
-	Directional(RGB clr, double it, Vector dir);
+	Directional(RGBColor clr, double it, Vector dir);
 	virtual ~Directional() = default;
 
-	virtual RGB		Illuminate(RGB& diffuse, const HitPoint& hp) const;
+	virtual RGBColor		Illuminate(RGBColor& diffuse, const HitPoint& hp) const;
 	virtual Vector	GetDiffPos(const Vector& intersection) const;
 };

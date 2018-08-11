@@ -52,5 +52,5 @@ public:
 
 	void	InitHeader(const uint32_t width, const uint32_t height);
 	void	Save(const char* path);
-	void	PutPixel(const uVec2 coord, const RGB clr) const;
+	void	PutPixel(const uVec2 coord, const RGBColor clr) const;
 };

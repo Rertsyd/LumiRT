@@ -12,10 +12,10 @@
 
 #include "LumiRT.hpp"
 
-static RGB	AA(LumiBox& lb, uVec2 coord)
+static RGBColor	AA(LumiBox& lb, uVec2 coord)
 {
 	static const unsigned	a2 = Config::AntiAliasing * Config::AntiAliasing;
-	RGB	pxColor;
+	RGBColor pxColor;
 
 	for (unsigned offY = 0u; offY < Config::AntiAliasing; ++offY)
 	{

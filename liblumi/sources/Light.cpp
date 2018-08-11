@@ -12,21 +12,21 @@
 
 #include "Light.hpp"
 
-Light::Light(RGB clr, double it) : Color(clr), Intensity(it)
+Light::Light(RGBColor clr, double it) : Color(clr), Intensity(it)
 {}
 
 /* ************** */
 
-Point::Point(RGB clr, double it, Vector pos) : Light(clr, it), Position(pos)
+Point::Point(RGBColor clr, double it, Vector pos) : Light(clr, it), Position(pos)
 {}
 
-RGB	Point::Illuminate(RGB& diffuse, const HitPoint& hp) const
+RGBColor	Point::Illuminate(RGBColor& diffuse, const HitPoint& hp) const
 {
 	Vector vlight = Position - hp.Intersection;
 	const double r2 = vlight.SquareLength();
 	vlight *= (1. / sqrt(r2));
 
-	RGB il;
+	RGBColor il;
 	
 	if (const double angle = hp.Normal.Dot(vlight);
 		angle > 0.)
@@ -45,10 +45,10 @@ Vector	Point::GetDiffPos(const Vector& intersection) const
 
 /* ************** */
 
-Directional::Directional(RGB clr, double it, Vector dir) : Light(clr, it), Direction(dir)
+Directional::Directional(RGBColor clr, double it, Vector dir) : Light(clr, it), Direction(dir)
 {}
 
-RGB	Directional::Illuminate(RGB& diffuse, const HitPoint& hp) const
+RGBColor	Directional::Illuminate(RGBColor& diffuse, const HitPoint& hp) const
 {
 	if (const double angle = hp.Normal.Dot(Direction * -1.);
 		angle > 0.)

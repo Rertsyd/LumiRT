@@ -17,7 +17,7 @@ unsigned Config::Height = 1080u;
 unsigned Config::NbThread = 4u;
 unsigned Config::AntiAliasing = 2u;
 double Config::Bias = 0.001;
-RGB Config::Ambient = { 0.12, 0.12, 0.12 };
+RGBColor Config::Ambient = { 0.12, 0.12, 0.12 };
 
 /* ************** */
 
@@ -34,7 +34,7 @@ void	Info::Reset()
 {
 	HP.Intersection = Vector();
 	HP.Normal = Vector();
-	HP.Albedo = RGB();
+	HP.Albedo = RGBColor();
 	Distance = std::numeric_limits<double>::max();
 	Object = nullptr;
 }

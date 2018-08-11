@@ -10,16 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RGB.hpp"
+#include "RGBColor.hpp"
 
-RGB::RGB() : red(0.), green(0.), blue(0.)
+RGBColor::RGBColor() : red(0.), green(0.), blue(0.)
 {}
 
-RGB::RGB(double r, double g, double b) :
-	red(r), green(g), blue(b)
+RGBColor::RGBColor(const RGBColor& rgb)
+{
+	*this = rgb;
+}
+
+RGBColor::RGBColor(double r, double g, double b) : red(r), green(g), blue(b)
 {}
 
-RGB&	RGB::operator=(const RGB& c)
+RGBColor&	RGBColor::operator=(const RGBColor& c)
 {
 	red = c.red;
 	green = c.green;
@@ -29,24 +33,24 @@ RGB&	RGB::operator=(const RGB& c)
 
 /* *********************************** */
 
-RGB	RGB::operator/(const double d) const
+RGBColor	RGBColor::operator/(const double d) const
 {
-	return RGB(red / d, green / d, blue / d);
+	return RGBColor(red / d, green / d, blue / d);
 }
 
 /* *********************************** */
 
-RGB	RGB::operator*(const RGB& c) const
+RGBColor	RGBColor::operator*(const RGBColor& c) const
 {
-	return RGB(red * c.red, green * c.green, blue * c.blue);
+	return RGBColor(red * c.red, green * c.green, blue * c.blue);
 }
 
-RGB	RGB::operator*(const double d) const
+RGBColor	RGBColor::operator*(const double d) const
 {
-	return RGB(red * d, green * d, blue * d);
+	return RGBColor(red * d, green * d, blue * d);
 }
 
-RGB&	RGB::operator*=(const RGB& c)
+RGBColor&	RGBColor::operator*=(const RGBColor& c)
 {
 	red *= c.red;
 	green *= c.green;
@@ -54,7 +58,7 @@ RGB&	RGB::operator*=(const RGB& c)
 	return *this;
 }
 
-RGB&	RGB::operator*=(const double d)
+RGBColor&	RGBColor::operator*=(const double d)
 {
 	red *= d;
 	green *= d;
@@ -64,17 +68,17 @@ RGB&	RGB::operator*=(const double d)
 
 /* *********************************** */
 
-RGB	RGB::operator+(const RGB& c) const
+RGBColor	RGBColor::operator+(const RGBColor& c) const
 {
-	return RGB(red + c.red, green + c.green, blue + c.blue);
+	return RGBColor(red + c.red, green + c.green, blue + c.blue);
 }
 
-RGB	RGB::operator+(const double d) const
+RGBColor	RGBColor::operator+(const double d) const
 {
-	return RGB(red + d, green + d, blue + d);
+	return RGBColor(red + d, green + d, blue + d);
 }
 
-RGB&	RGB::operator+=(const RGB& c)
+RGBColor&	RGBColor::operator+=(const RGBColor& c)
 {
 	red += c.red;
 	green += c.green;
@@ -82,7 +86,7 @@ RGB&	RGB::operator+=(const RGB& c)
 	return *this;
 }
 
-RGB&	RGB::operator+=(const double d)
+RGBColor&	RGBColor::operator+=(const double d)
 {
 	red += d;
 	green += d;
@@ -92,17 +96,17 @@ RGB&	RGB::operator+=(const double d)
 
 /* *********************************** */
 
-RGB	RGB::operator-(const RGB& c) const
+RGBColor	RGBColor::operator-(const RGBColor& c) const
 {
-	return RGB(red - c.red, green - c.green, blue - c.blue);
+	return RGBColor(red - c.red, green - c.green, blue - c.blue);
 }
 
-RGB	RGB::operator-(const double d) const
+RGBColor	RGBColor::operator-(const double d) const
 {
-	return RGB(red - d, green - d, blue - d);
+	return RGBColor(red - d, green - d, blue - d);
 }
 
-RGB&	RGB::operator-=(const RGB& c)
+RGBColor&	RGBColor::operator-=(const RGBColor& c)
 {
 	red -= c.red;
 	green -= c.green;
@@ -110,7 +114,7 @@ RGB&	RGB::operator-=(const RGB& c)
 	return *this;
 }
 
-RGB&	RGB::operator-=(const double d)
+RGBColor&	RGBColor::operator-=(const double d)
 {
 	red -= d;
 	green -= d;
@@ -118,7 +122,7 @@ RGB&	RGB::operator-=(const double d)
 	return *this;
 }
 
-RGB&	RGB::Normalize()
+RGBColor&	RGBColor::Normalize()
 {
 	(red > 1.) ? (red) = 1. : 0.;
 	(red < 0.) ? (red) = 0. : 0.;

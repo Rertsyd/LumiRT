@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "RGB.hpp"
+#include "RGBColor.hpp"
 
 template <typename T>
 struct TVec2

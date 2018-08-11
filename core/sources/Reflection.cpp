@@ -18,7 +18,7 @@ Vector	reflect(const Vector& incident, const Vector& normal)
 }
 
 
-RGB   Reflection(const LumiBox& lb, const Ray& r, Info& info, const unsigned depth)
+RGBColor   Reflection(const LumiBox& lb, const Ray& r, Info& info, const unsigned depth)
 {
 	info.AddBias();
 
@@ -26,7 +26,5 @@ RGB   Reflection(const LumiBox& lb, const Ray& r, Info& info, const unsigned dep
 	refl.Origin = info.HP.Intersection;
 	refl.Direction = reflect(r.Direction, info.HP.Normal).Normalize();
 
-	RGB color = Cast(lb, refl, depth + 1) * info.Object->MatPtr->kReflection;
-
-	return (color);
+	return Cast(lb, refl, depth + 1) * info.Object->MatPtr->kReflection;
 }
