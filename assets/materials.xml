@@ -2,10 +2,10 @@
 <materials>
 	<red>
 		<type> phong </type>
-		<albedo> 1 0 0 </albedo>
+		<albedo> 1 0.2 0.2 </albedo>
 		<kdiffuse> 1 </kdiffuse>
 		<kspecular> 0.84 </kspecular>
-		<ks_exp> 50 </ks_exp>
+		<ks_exp> 420 </ks_exp>
 	</red>
 	<green>
 		<type> phong </type>
@@ -18,27 +18,26 @@
 		<type> phong </type>
 		<albedo> 0 0 1 </albedo>
 		<kdiffuse> 1 </kdiffuse>
-		<kspecular> 0.2 </kspecular>
-		<ks_exp> 50 </ks_exp>
+		<kspecular> 1 </kspecular>
+		<ks_exp> 150 </ks_exp>
 	</blue>
 	<white>
 		<type> phong </type>
 		<albedo> 1 1 1 </albedo>
 		<kdiffuse> 1 </kdiffuse>
 		<kspecular> 0.2 </kspecular>
-		<ks_exp> 50 </ks_exp>
+		<ks_exp> 1250 </ks_exp>
 	</white>
 	<mirror>
 		<type> reflection </type>
-		<albedo> 1 0 1 </albedo>
 		<kreflection> 0.8 </kreflection>
 	</mirror>
-	<glass>
+	<diamond>
 		<type> refraction </type>
 		<albedo> 0.9 0.9 0.9 </albedo>
 		<kreflection> 0.8 </kreflection>
-		<krefraction> 1.5 </krefraction>
+		<krefraction> 2.42 </krefraction>
 		<transparency> 0.8 </transparency>
-	</glass>
+	</diamond>
 </materials>
 </xml>

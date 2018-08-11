@@ -1,50 +1,31 @@
 <xml>
 <camera>
-	<position> 0 10 -30 </position>
+	<position> 0 0 -30 </position>
 	<look_at> 0 0 0 </look_at>
 </camera>
 <scene>
 	<objects>
-		<!-- <plane>
-			<position> 0 -2 2.5 </position>
-			<normal> 0 1 0 </normal>
-			<rotation> 90 0 0 </rotation>
-			<material> blue </material>
-		</plane>
-		<plane>
-			<position> -2.5 -2 0 </position>
-			<normal> 0 1 0 </normal>
-			<rotation> 0 0 90 </rotation>
-			<material> green </material>
-		</plane>
-		<plane>
-			<position> 2.5 -2 0 </position>
-			<normal> 0 1 0 </normal>
-			<rotation> 0 0 90 </rotation>
-			<material> blue </material>
-		</plane> -->
 		<plane>
 			<position> 0 -2.5 0 </position>
 			<normal> 0 1 0 </normal>
-			<material> mirror </material>
-		</plane>
-		<sphere>
-			<position> 2.5 0 2 </position>
-			<radius> 1 </radius>
 			<material> white </material>
+		</plane> 
+		<sphere>
+			<position> 0 0 0 </position>
+			<radius> 1 </radius>
+			<material> red </material>
 		</sphere>
 	</objects>
 	<lights>
+		<directional>
+			<direction> -1 -1 1 </direction>
+			<color> 1 1 1 </color>
+		</directional>
 		<point>
-			<position> -3 0 0 </position>
-			<intensity> 420 </intensity>
+			<position> -3 3 -3 </position>
+			<intensity> 142 </intensity>
 			<color> 1 1 1 </color>
 		</point>
-		<!-- <point>
-			<position> -1.5 0 -1 </position>
-			<intensity> 100 </intensity>
-			<color> 1 1 1 </color>
-		</point> -->
 	</lights>
 </scene>
 </xml>

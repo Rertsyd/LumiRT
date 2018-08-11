@@ -1,33 +1,55 @@
 <xml>
 <camera>
-	<position> 0 30 -30 </position>
-	<look_at> 0 0 0 </look_at>
+	<position> 0 10 -30 </position>
+	<look_at> 0 0 3 </look_at>
 </camera>
 <scene>
 	<objects>
 		<plane>
-			<position> 0 0 0 </position>
+			<position> 0 0 3 </position>
 			<normal> 0 1 0 </normal>
 			<rotation> 90 0 0 </rotation>
-			<material> red </material>
+			<material> mirror </material>
 		</plane>
 		<plane>
-			<position> 0 0 0 </position>
+			<position> 3.2 0 0 </position>
 			<normal> 0 1 0 </normal>
+			<rotation> 0 0 90 </rotation>
 			<material> green </material>
 		</plane>
+		<plane>
+			<position> -3.2 0 0 </position>
+			<normal> 0 1 0 </normal>
+			<rotation> 0 0 90 </rotation>
+			<material> mirror </material>
+		</plane>
+		<plane>
+			<position> 0 -2.5 0 </position>
+			<normal> 0 1 0 </normal>
+			<material> white </material>
+		</plane>
+		<plane>
+			<position> 0 10 0 </position>
+			<normal> 0 1 0 </normal>
+			<material> blue </material>
+		</plane>
 		<sphere>
-			<position> 0 15 -15 </position>
+			<position> 0 0 0 </position>
 			<radius> 1 </radius>
-			<material> glass </material>
+			<material> diamond </material>
+		</sphere>
+		<sphere>
+			<position> 2 0 -2.5 </position>
+			<radius> 1 </radius>
+			<material> red </material>
 		</sphere>
 	</objects>
 	<lights>
-		<directional>
-			<direction> 0 -1 1 </direction>
-			<intensity> 75 </intensity>
+		<point>
+			<position> -3 3 -1.5 </position>
+			<intensity> 142 </intensity>
 			<color> 1 1 1 </color>
-		</directional>
+		</point>
 	</lights>
 </scene>
 </xml>
