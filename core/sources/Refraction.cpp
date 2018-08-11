@@ -50,7 +50,7 @@ static Vector	stRefract(const Vector incident, Vector normal, const double ior)
 		normal *= -1.;
 	}
 	const double eta = etai / etat;
-	const double k = 1 - eta * eta * (1. - cosIncident * cosIncident);
+	const double k = 1. - eta * eta * (1. - cosIncident * cosIncident);
 
 	return (k < 0.) ? Vector() : (incident * eta) + (normal * (eta * cosIncident - sqrt(k)));
 }
@@ -59,7 +59,7 @@ static RGBColor		stGetRefractColor(const LumiBox& lb, const Ray& r, Info& info, 
 {
 	RGBColor	color;
 
-	if (tools.kr < 1)
+	if (tools.kr < 1.)
 	{
 		Ray refr;
 		refr.Direction = (info.Object->IsPlanar()) ? (r.Direction - tools.vbias) :
@@ -92,7 +92,7 @@ RGBColor   Refraction(const LumiBox& lb, const Ray& r, Info& info, const unsigne
 	tools.ior	= info.Object->MatPtr->kRefraction;
 	tools.kr	= stFresnel(r.Direction, info.HP.Normal, tools.ior);
 	tools.vbias	= info.HP.Normal * Config::Bias;
-	tools.isOutside = (r.Direction.Dot(info.HP.Normal) < 0.) ? true : false;
+	tools.isOutside = (r.Direction.Dot(info.HP.Normal) < 0.);
 	tools.depth = depth;
 
 	const RGBColor	refractColor = stGetRefractColor(lb, r, info, tools);
@@ -100,5 +100,5 @@ RGBColor   Refraction(const LumiBox& lb, const Ray& r, Info& info, const unsigne
 
 	const RGBColor	color = (reflectColor * tools.kr) + (refractColor * (1. - tools.kr));
 
-	return	(Config::Ambient * info.HP.Albedo * color + color);
+	return	((Config::Ambient * info.HP.Albedo * color) + color);
 }
