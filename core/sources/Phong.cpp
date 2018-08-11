@@ -14,7 +14,7 @@
 
 static RGBColor	stSpecular(const uPtrLight& light, const Ray& r, const RGBColor& li, Info& info)
 {
-	const Vector	lightDir = point->GetDirection(info.HP.Intersection);
+	const Vector	lightDir = light->GetDiffPos(info.HP.Intersection).Normalize();
 	const Vector	refl = reflect(lightDir, info.HP.Normal);
 	const double	angle = refl.Dot(r.Direction * -1.);
 
@@ -33,7 +33,7 @@ RGBColor		Phong(const LumiBox& lb, const Ray& rPrimary, Info& info)
 
 	for (auto& light : lb.LgtList)
 	{
-		rShadow.Direction = light->GetPosition(info.HP.Intersection) - info.HP.Intersection;
+		rShadow.Direction = light->GetDiffPos(info.HP.Intersection) * -1.;
 
 		Info	iShadow;
 		iShadow.Distance = rShadow.Direction.SquareLength();
@@ -42,20 +42,19 @@ RGBColor		Phong(const LumiBox& lb, const Ray& rPrimary, Info& info)
 		rShadow.Direction *= (1. / sqrt(iShadow.Distance));
 
 		if (!Trace(lb.ShpList, rShadow, iShadow))
-		{
-			const RGB li = light->Illuminate(diffuse, info.HP);
-
-			//specular += stSpecular(light, rPrimary, li, info);
+		{			
+			const RGBColor li = light->Illuminate(diffuse, info.HP);
+			specular += stSpecular(light, rPrimary, li, info);
 		}
 		else if (iShadow.Object->MatPtr->Type == Material::Types::Refraction)
 		{
-			const RGB li = light->Illuminate(diffuse, info.HP);
+			const RGBColor li = light->Illuminate(diffuse, info.HP);
 			diffuse = (diffuse * iShadow.Object->MatPtr->Albedo *
 				iShadow.Object->MatPtr->Transparency).Normalize();
 		}
 	}
 
 	return (Config::Ambient * info.HP.Albedo) +
-		(diffuse * info.Object->MatPtr->kDiffuse +
-		specular * info.Object->MatPtr->kSpecular);
+		(diffuse * info.Object->MatPtr->kDiffuse) +
+		(specular * info.Object->MatPtr->kSpecular);
 }
