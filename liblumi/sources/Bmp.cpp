@@ -30,7 +30,7 @@ void	Bmp::InitHeader(const uint32_t width, const uint32_t height)
 	IHeader.SizeImage = width * height * (IHeader.BitCount / 8u);
 
 	Data.reset(new uint8_t[IHeader.SizeImage]);
-	memset(Data.get(), 0x80u, IHeader.SizeImage);
+	memset(Data.get(), 0x00u, IHeader.SizeImage);
 
 	FHeader[0] = 'B';
 	FHeader[1] = 'M';
@@ -48,25 +48,35 @@ void	Bmp::InitHeader(const uint32_t width, const uint32_t height)
 
 void	Bmp::Save(const char* path)
 {
-	std::ofstream ofs(path);
+	std::ofstream ofs(path, std::ios::binary);
 	ofs.write(reinterpret_cast<char*>(FHeader), sizeof(FHeader));
 	ofs.write(reinterpret_cast<char*>(&IHeader), sizeof(InfoHeader));
-	ofs.write(reinterpret_cast<char*>(Data.get()), IHeader.SizeImage);
+
+	const uint32_t	bytesPerPixel = IHeader.BitCount / 8u;
+	const uint32_t	sizeLine = IHeader.Width * bytesPerPixel;
+
+	const uint32_t	padding = (4u - ((3u * IHeader.Width) % 4u)) % 4u;
+	const char paddingData[4] = { 0x00, 0x00, 0x00, 0x00 };
+
+	for (uint32_t i = 0; i < IHeader.Height; ++i)
+	{
+		const uint8_t* ptr = &(Data.get()[(sizeLine * (IHeader.Height - i - 1u))]);
+
+		ofs.write(reinterpret_cast<const char*>(ptr), sizeof(uint8_t) * sizeLine);
+		ofs.write(paddingData, padding);
+	}
+
 	ofs.close();
 }
 
 void	Bmp::PutPixel(const uVec2 coord, const RGBColor clr) const
 {
-	static const uint32_t	bytesPerPixel = IHeader.BitCount / 8u;
-	static const uint32_t	sizeLine = IHeader.Width * bytesPerPixel;
+	const uint32_t	bytesPerPixel = IHeader.BitCount / 8u;
+	const uint32_t	sizeLine = IHeader.Width * bytesPerPixel;
 
-	const uint32_t	id =
-		IHeader.SizeImage - ((coord.y * sizeLine) + coord.x * bytesPerPixel) -1u;
+	const uint32_t	id = ((coord.y * sizeLine) + coord.x * bytesPerPixel);
 	
-	if (id < IHeader.SizeImage)
-	{
-		Data.get()[id] = static_cast<uint8_t>((clr.red >= 255.) ? 255. : clr.red);
-		Data.get()[id -1] = static_cast<uint8_t>((clr.green >= 255.) ? 255. : clr.green);
-		Data.get()[id -2] = static_cast<uint8_t>((clr.blue >= 255.) ? 255. : clr.blue);
-	}
+	Data.get()[id + 2] = (clr.red >= 255.) ? 255u : static_cast<uint8_t>(clr.red);
+	Data.get()[id + 1] = (clr.green >= 255.) ? 255u : static_cast<uint8_t>(clr.green);
+	Data.get()[id] = (clr.blue >= 255.) ? 255u : static_cast<uint8_t>(clr.blue);
 }
